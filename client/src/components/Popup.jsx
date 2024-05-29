@@ -1,5 +1,6 @@
-import axios from "axios";
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
 import { RxCross2 } from "react-icons/rx";
 import { baseURL } from "../utils/constant";
 
@@ -33,6 +34,15 @@ const Popup = ({ setShowPopup, popupContent, setUpdateUI }) => {
       </div>
     </div>
   );
+};
+
+Popup.propTypes = {
+  setShowPopup: PropTypes.func.isRequired,
+  popupContent: PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  }).isRequired,
+  setUpdateUI: PropTypes.func.isRequired,
 };
 
 export default Popup;
