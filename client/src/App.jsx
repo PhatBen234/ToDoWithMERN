@@ -9,7 +9,7 @@ const App = () => {
   const [input, setInput] = useState("");
   const [updateUI, setUpdateUI] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [popupContent, setPopupContent] = useState({})
+  const [popupContent, setPopupContent] = useState({});
 
   useEffect(() => {
     axios
@@ -18,7 +18,7 @@ const App = () => {
       .catch((err) => console.log(err));
   }, [updateUI]);
 
-  const saveToDo = () => {
+  const createToDo = () => {
     axios
       .post(`${baseURL}/create`, { toDo: input })
       .then((res) => {
@@ -41,7 +41,7 @@ const App = () => {
             type="text"
             placeholder="Add a ToDo..."
           />
-          <button onClick={saveToDo}>Add</button>
+          <button onClick={createToDo}>Add</button>
         </div>
       </div>
 
@@ -57,7 +57,13 @@ const App = () => {
           />
         ))}
       </div>
-      {showPopup && <Popup setShowPopup={setShowPopup} popupContent={popupContent} setUpdateUI={setUpdateUI}/>}
+      {showPopup && (
+        <Popup
+          setShowPopup={setShowPopup}
+          popupContent={popupContent}
+          setUpdateUI={setUpdateUI}
+        />
+      )}
     </main>
   );
 };
